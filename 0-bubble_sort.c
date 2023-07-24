@@ -14,7 +14,10 @@
  */
 void bubble_sort(int *array, size_t size)
 {
-
+if (size <= 1)
+{
+return;
+}
 int swap;
 unsigned long int j;
 unsigned long int i;
