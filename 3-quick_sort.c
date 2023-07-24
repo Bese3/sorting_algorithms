@@ -47,11 +47,17 @@ return (i + 1);
  */
 void quickSort(int arr[], int low, int high, int size)
 {
+static int i = 1;
 if (low < high)
 {
 int pivot = partition(arr, low, high);
-print_array(arr, size);
 quickSort(arr, low, pivot - 1, size);
+print_array(arr, size);
+if (i < 2)
+{
+print_array(arr, size);
+i++;
+}
 quickSort(arr, pivot + 1, high, size);
 }
 }
