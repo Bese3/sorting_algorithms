@@ -26,26 +26,29 @@ void swap_ints(int *a, int *b)
  */
 int lomuto_partition(int *array, size_t size, int left, int right)
 {
-int *pivot, cont, station;
+
+int *pivot, i, j;
+i = left - 1;
 pivot = array + right;
-for (station = cont = left; station < right; station++)
+for (j = left; j < right; j++)
 {
-if (array[station]  < *pivot)
+if (array[j] < *pivot)
 {
-if (station > cont)
+i = i + 1;
+if (j >= i + 1)
 {
-swap_ints(array + station, array + cont);
+swap_ints(array + i, array + j);
 print_array(array, size);
 }
-cont++;
 }
 }
-if (array[cont] > *pivot)
+if (array[i + 1] > *pivot)
 {
-swap_ints(array + cont, pivot);
+i = i + 1;
+swap_ints(array + i, pivot);
 print_array(array, size);
 }
-return (cont);
+return (i);
 }
 
 /**
@@ -62,7 +65,7 @@ int location;
 if (right - left > 0)
 {
 location = lomuto_partition(array, size, left, right);
-lomuto_sort(array, size, left, location - 1);
+lomuto_sort(array, size, left, location);
 lomuto_sort(array, size, location + 1, right);
 }
 }
